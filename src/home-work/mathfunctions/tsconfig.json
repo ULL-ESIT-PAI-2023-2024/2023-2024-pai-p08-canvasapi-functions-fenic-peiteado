@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // El nivel de ECMAScript al que se compilará el código
+    "module": "ES6", // El sistema de módulos que se utilizará
+    "strict": true, // Habilita todas las opciones estrictas de TypeScript
+    "esModuleInterop": true, // Permite la interoperabilidad con los módulos de ES6
+    "forceConsistentCasingInFileNames": true, // Obliga a que los nombres de archivo tengan consistencia de mayúsculas y minúsculas
+    "moduleResolution": "node", // Determina cómo se resuelven los módulos
+    "baseUrl": "./", // La ruta base para resolver los módulos
+    "outDir": "./", // La carpeta de salida para los archivos compilados
+    "removeComments": true, // Elimina los comentarios del código compilado
+    "sourceMap": true, // Genera archivos de mapa de origen para facilitar la depuración
+    "allowJs": true
+  },
+  "include": ["**.ts"], // Los archivos que TypeScript debe incluir al compilar
+  "exclude": ["node_modules"] // Los archivos y carpetas que TypeScript debe excluir del proceso de compilación
+}

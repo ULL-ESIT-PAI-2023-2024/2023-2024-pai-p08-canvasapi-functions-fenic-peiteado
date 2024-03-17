@@ -1,0 +1,1 @@
+import {FunctionMathematical} from 'function_mathematical';
