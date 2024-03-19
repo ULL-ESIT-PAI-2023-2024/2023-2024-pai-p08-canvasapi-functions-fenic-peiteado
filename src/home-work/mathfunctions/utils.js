@@ -1,6 +1,6 @@
 export const CONFIGURE_CANVA = {
     CANVA_ID: 'fondo',
-    SCALE: 200,
+    SCALE: 50,
 };
 export const COLORS = {
     red: 'red',
@@ -8,7 +8,6 @@ export const COLORS = {
     green: 'green',
     yellow: 'yellow',
     black: 'black',
-    white: 'white',
     gray: 'gray',
     orange: 'orange',
     pink: 'pink',
@@ -23,4 +22,10 @@ export const COLORS = {
     maroon: 'maroon',
     navy: 'navy',
 };
+export function getRamdomColor() {
+    const keys = Object.keys(COLORS);
+    const index = Math.floor(Math.random() * keys.length);
+    const color = keys[index];
+    return color;
+}
 //# sourceMappingURL=utils.js.map

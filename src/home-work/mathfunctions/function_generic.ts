@@ -1,8 +1,21 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Programación de Aplicaciones Interactivas
+ *
+ * @author Jose Fenic Peiteado Padiila
+ * @since 24/02/2024
+ * @desc function generic for draw in the canva
+ * @license GNU General Public License, version 3 (GPL-3.0)
+ * @see {@link https://opensource.org/licenses/GPL-3.0}
+ */
+
+import {Drawable} from './drawable.js';
 import {FunctionMathematical} from './function_mathematical.js';
-import {CONFIGURE_CANVA} from './utils.js';
+import {CONFIGURE_CANVA, getRamdomColor} from './utils.js';
 
-
-export class FunctionGeneric {
+export class FunctionGeneric implements Drawable {
   /**
    * Create object FunctionGeneric
    * @param identifier identifer of function
@@ -20,19 +33,48 @@ export class FunctionGeneric {
     return this.functionMathematical(pointX);
   }
 
-  draw(ctx: CanvasRenderingContext2D): void {
+  /**
+   *  Draw the function in the canva
+   * @param canvasContext  context of the canva
+   */
+  public draw(canvasContext: CanvasRenderingContext2D): void {
     // get limit the values x lower and upper
-    const SCALE = CONFIGURE_CANVA.SCALE
-    const limitXLower = -(ctx.canvas.width / (2 * SCALE));
-    const limitXUpper = ctx.canvas.width / (2 * SCALE);
-    const incrementScale = 1 / SCALE;
-    ctx.beginPath();
+    const SCALE: number = CONFIGURE_CANVA.SCALE
+    const limitXLower: number = -(canvasContext.canvas.width / (2 * SCALE));
+    const limitXUpper: number = canvasContext.canvas.width / (2 * SCALE);
+    const incrementScale: number = 1 / SCALE;
+    const colorText: string = getRamdomColor();
+    canvasContext.strokeStyle = colorText;
+    canvasContext.beginPath();
     const valueInY = this.evaluatInX(limitXLower);
-    ctx.moveTo(limitXLower * SCALE, valueInY * SCALE);
-    for (let i = limitXLower+incrementScale; i < limitXUpper; i = i + incrementScale) {
+    canvasContext.moveTo(limitXLower * SCALE, valueInY * SCALE);
+    for (let i = limitXLower + incrementScale; i < limitXUpper;
+         i = i + incrementScale) {
       const valueInY = this.evaluatInX(i);
-      ctx.lineTo(i * SCALE, valueInY * SCALE);
-      ctx.stroke();
+      canvasContext.lineTo(i * SCALE, valueInY * SCALE);
+      canvasContext.stroke();
     }
+//  this.drawIdentifier(canvasContext, colorText);
+    canvasContext.strokeStyle = 'black';
+  }
+
+  /**
+   * Drawing the identifier of the function in the canva
+   * @param canvasContext canva
+   * @param colorText color of the text
+   */
+  public drawIdentifier(
+      canvasContext: CanvasRenderingContext2D, colorText: string): void {
+    const SCALE = CONFIGURE_CANVA.SCALE
+    const DIVIDE_SCALE = 4;
+    const SIZE_TEXT = SCALE / DIVIDE_SCALE;
+    const valueInX = -canvasContext.canvas.width / 2
+    const valueInY = -canvasContext.canvas.height / 2.5;
+    // cambiar el color del texto
+    canvasContext.fillStyle = colorText;
+    canvasContext.scale(1, -1);
+    canvasContext.font = `${SIZE_TEXT}px serif`;
+    canvasContext.fillText(this.identifier, valueInX, valueInY);
+    canvasContext.scale(1, -1);
   }
 }

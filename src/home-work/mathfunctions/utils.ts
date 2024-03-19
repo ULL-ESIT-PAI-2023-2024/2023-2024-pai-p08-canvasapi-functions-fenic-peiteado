@@ -12,14 +12,13 @@
  */
 
 
-//Object that define configuration of the canva
+// Object that define configuration of the canva
 export const CONFIGURE_CANVA = {
-  //Identifier of the canva
+  // Identifier of the canva
   CANVA_ID: 'fondo',
-  //Width of the canva
-  SCALE: 200,
+  // Width of the canva
+  SCALE: 50,  // Precisiones  50 100 200
 };
-
 
 export const COLORS = {
   red: 'red',
@@ -27,7 +26,6 @@ export const COLORS = {
   green: 'green',
   yellow: 'yellow',
   black: 'black',
-  white: 'white',
   gray: 'gray',
   orange: 'orange',
   pink: 'pink',
@@ -41,4 +39,11 @@ export const COLORS = {
   indigo: 'indigo',
   maroon: 'maroon',
   navy: 'navy',
+}
+
+export function getRamdomColor(): string {
+  const keys = Object.keys(COLORS);
+  const index = Math.floor(Math.random() * keys.length);
+  const color = keys[index];
+  return color;
 }

@@ -5,7 +5,8 @@
   "main": "dist/script.js",
   "scripts": {
     "build": "tsc -w",
-    "start": "npm run build && node dist/script.js"
+    "start": "npm run build && node dist/script.js",
+    "doc" : "typedoc "
   },
   "author": "Jose Fenic Peiteado Padilla",
   "license": "MIT",
